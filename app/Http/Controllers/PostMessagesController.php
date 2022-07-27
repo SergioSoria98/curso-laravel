@@ -11,7 +11,7 @@ class PostMessagesController extends Controller
 {
     public function __invoke(Request $request)
     {
-        request()->validate([
+        $message = request()->validate([
             'name' => 'required',
             'email' => 'required|email',
             'subject' => 'required',
@@ -23,9 +23,14 @@ class PostMessagesController extends Controller
 
         // ENVIAR EMAIL
 
-        Mail::to('descobic1998@gmail.com')->send(new MessageReceived);
+    Mail::to('descobic1998@gmail.com')->queue(new MessageReceived($message));
       
-       return 'Datos validados';
+
+
+
+    return 'Datos validados';
+
+
     }
    
 }
