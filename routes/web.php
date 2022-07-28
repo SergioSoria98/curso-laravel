@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\GetPortfolioController;
-use App\Http\Controllers\PostMessagesController;
+
+use App\Http\Controllers\GetProjectController;
+use App\Http\Controllers\PostMessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +27,11 @@ use App\Http\Controllers\PostMessagesController;
 Route::view('/', 'home')->name('home');
 Route::view('/about', 'about')->name('about');
 #Route::get('/portfolio', 'PortfolioController@index')->name('portfolio');
-Route::get('/portfolio', GetPortfolioController::class);
+Route::get('/portfolio', [GetProjectController::class, 'index'])->name('projects.index');
+
+Route::get('/portfolio/{id}', [GetProjectController::class, 'show'])->name('projects.show');
 Route::view('/contact', 'contact')->name('contact');
 
-Route::post('/contact', PostMessagesController::class);
+Route::post('/contact', PostMessageController::class)->name('messages.store');
 
 

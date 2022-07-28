@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class PostMessagesController extends Controller
+class PostMessageController extends Controller
 {
     public function __invoke(Request $request)
     {
