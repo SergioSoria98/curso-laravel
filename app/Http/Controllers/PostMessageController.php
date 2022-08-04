@@ -28,7 +28,7 @@ class PostMessageController extends Controller
 
 
 
-    return 'Datos validados';
+    return back()->with('status','Recibimos tu mensaje, te responderemos en menos de 24 horas.');
 
 
     }

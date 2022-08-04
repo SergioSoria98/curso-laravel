@@ -5,7 +5,7 @@
 
 @section('content')
     <h1>Portafolio</h1>
-
+    <a href="{{ route('projects.create') }}">Crear proyecto</a>
 
     <ul>
 

@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GetProjectController;
 use App\Http\Controllers\PostMessageController;
 
@@ -26,12 +28,19 @@ use App\Http\Controllers\PostMessageController;
 
 Route::view('/', 'home')->name('home');
 Route::view('/about', 'about')->name('about');
-#Route::get('/portfolio', 'PortfolioController@index')->name('portfolio');
-Route::get('/portfolio', [GetProjectController::class, 'index'])->name('projects.index');
 
-Route::get('/portfolio/{id}', [GetProjectController::class, 'show'])->name('projects.show');
+
+Route::resource('portfolio',GetProjectController::class)
+        ->names('projects')
+        ->parameters(['portfolio' => 'project']);
+
+
 Route::view('/contact', 'contact')->name('contact');
 
 Route::post('/contact', PostMessageController::class)->name('messages.store');
 
 
+
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
